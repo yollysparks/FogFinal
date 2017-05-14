@@ -15,7 +15,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h2>Data from the table 'carport_parts' of database 'carport'</h2>
+        <h2>List of your Items.</h2>
 <%
 try {
 /* Create string of connection url within specified format with machine

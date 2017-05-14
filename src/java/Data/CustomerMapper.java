@@ -5,6 +5,7 @@
  */
 package Data;
 
+import static java.lang.System.out;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,39 +17,49 @@ import java.sql.PreparedStatement;
  * @author felesiah
  */
 public class CustomerMapper {
- public static boolean validate(String name, String pass) {        
+    
+     private  static  DBconnector conn;
+
+    public CustomerMapper() {
+        this.conn = new DBconnector();
+    }
+    
+    
+    
+ public static boolean validate(String user, String pass) {        
         boolean status = false;
-        Connection conn = null;
+       
         PreparedStatement pst = null;
         ResultSet rs = null;
-
-        String url = "jdbc:mysql://localhost:3306/";
-        String dbName = "carport";
-        String driver = "com.mysql.jdbc.Driver";
-        String userName = "root";
-        String password = "indeche2013";
-        try {
-            Class.forName(driver).newInstance();
-            conn = DriverManager
-                    .getConnection(url + dbName, userName, password);
-
-            pst = conn
-                    .prepareStatement("select * from login where user=? and password=?");
-            pst.setString(1, name);
+ 
+        try {  
+            pst = conn.getConnection().prepareStatement("select * from login where user=? and password=?");
+                    
+            // process query results
+            pst.setString(1, user);
             pst.setString(2, pass);
-
             rs = pst.executeQuery();
-            status = rs.next();
+            
+            String Cuser = "",Cpass ="";
+            
+             if (rs.next()) {
+                Cuser = rs.getString("user");
+                Cpass = rs.getString("password");
+            } //end if
+            if (Cpass.equals(pass)&& user.equals(user)) {
+                //do something
+                out.println(" got user and password");
+                return true;   
+            } else {
+                rs.close();
+             //do something
+            }
 
         } catch (Exception e) {
-            System.out.println(e);
+            out.println(e);
         } finally {
             if (conn != null) {
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                conn.close(pst, rs, (Connection) conn);
             }
             if (pst != null) {
                 try {

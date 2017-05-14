@@ -16,10 +16,10 @@ import java.sql.Statement;
  * @author felesiah
  */
 public class OrderMapper {
-    private Connection con;
+    private DBconnector con;
     public OrderMapper() {
         
-   con = new DBconnector().getConnection();
+   
    }
    public Order getOrderId(int orderid){
        ResultSet rs = null;
@@ -30,7 +30,7 @@ public class OrderMapper {
                 + "from order "
                 + "where idorder = " + orderid;
         try {
-            stmt = con.createStatement();
+            stmt = con.getConnection().createStatement();
             rs = stmt.executeQuery(SQLString);
 
             if (rs.next()) {

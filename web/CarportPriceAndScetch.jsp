@@ -18,8 +18,6 @@
         <b><font size="+2" color="Black"></b>
         Total Price is : <% out.print(session.getAttribute("finalPrice"));%>
         <br>
-        # of parts: <% out.print(session.getAttribute("numberOfParts"));%>
-        <br>
         <div>
         <svg width="640" height="480" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
  <!-- Created with SVG-edit - http://svg-edit.googlecode.com/ -->
@@ -43,7 +41,7 @@
     <TR>
         <p><b>Print your sketch!</b> </p> 
     <br>
-    <TD><FORM ACTION="receipt.jsp" method="get" >
+    <TD><FORM ACTION="connectJspToMysql.jsp" method="get" >
     <button type="submit">FINALISE ORDER</button></TD>
     <br>
     </TR>

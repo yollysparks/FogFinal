@@ -47,12 +47,9 @@ rs = statement.executeQuery(QueryString);
 %>
 <TR>
 <TD><%=rs.getInt(1)%></TD>
-<br>
-<TD><%=rs.getString(2)%></TD>
-<br>
-<TD><%=rs.getString(3)%></TD>
-<br>
-<TD><%=rs.getString(4)%></TD>
+<TD><%=rs.getDouble(2)%></TD>
+<TD><%=rs.getDate(3)%></TD>
+<TD><%=rs.getInt(4)%></TD>
 <br>
 </TR>
 <% } %>
