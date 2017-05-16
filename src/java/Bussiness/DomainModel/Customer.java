@@ -23,6 +23,7 @@ public class Customer {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+        // ,,dg,dg
     }
 
 
